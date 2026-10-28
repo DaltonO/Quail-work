@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens extracted from the Quail Figma file
+ * (fills/strokes across the header, navigation and landing-page frames).
+ */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Text */
+  --color-ink: #203c4b; /* headings, body-strong, dark panels */
+  --color-muted: #60706f; /* supporting copy */
+  --color-mist: #d8e3e2; /* copy on dark panels */
+
+  /* Brand */
+  --color-brand: #28665c; /* primary buttons, eyebrows, links */
+  --color-teal: #0f766e; /* participant-page accents */
+  --color-rust: #9f4f42; /* info icon on blush note */
+
+  /* Surfaces */
+  --color-cream: #f8f7f2; /* page background */
+  --color-sage: #e8eee6;
+  --color-sage-2: #e5eee7;
+  --color-sand: #eee7d8;
+  --color-blush: #f3e3dd;
+  --color-board: #ebeeea;
+
+  /* Lines */
+  --color-line: #dadfd7;
+  --color-line-2: #dde3dc;
+  --color-rule: #b6c8bd;
+  --color-rule-2: #cbd7cc;
+  --color-control: #93a99f; /* unchecked radio / checkbox border */
+
+  /* Validation (Participant Inquiry — Error, 1:895) */
+  --color-error: #9b392e;
+  --color-error-surface: #faf1ed; /* error summary */
+  --color-error-field: #faf4f4; /* invalid input fill */
+
+  /* Layout */
+  --container-page: 1280px;
+
+  /* Elevation (Figma drop shadows, color #203c4b) */
+  --shadow-menu: 0 8px 24px 0 rgb(32 60 75 / 0.07);
+  --shadow-card: 0 8px 24px 0 rgb(32 60 75 / 0.05);
+  --shadow-card-soft: 0 8px 24px 0 rgb(32 60 75 / 0.03);
+  --shadow-node: 0 4px 16px 0 rgb(32 60 75 / 0.03);
+  --shadow-panel: 0 16px 48px 0 rgb(32 60 75 / 0.08);
+  --shadow-panel-soft: 0 16px 48px 0 rgb(32 60 75 / 0.07);
+  --shadow-hub: 0 16px 40px 0 rgb(32 60 75 / 0.07);
+}
+
+/*
+ * Divider rules drawn as inset shadows: Figma strokes on these rows are "inside",
+ * so they must not add height the way a CSS border does.
+ */
+@utility rule-t {
+  box-shadow: inset 0 1px 0 var(--rule-color, var(--color-line));
+}
+@utility rule-b {
+  box-shadow: inset 0 -1px 0 var(--rule-color, var(--color-line));
+}
+@utility rule-line-2 {
+  --rule-color: var(--color-line-2);
+}
+@utility rule-rule {
+  --rule-color: var(--color-rule);
+}
+@utility rule-rule-2 {
+  --rule-color: var(--color-rule-2);
+}
+@utility rule-white {
+  --rule-color: rgb(255 255 255 / 0.14);
+}
+
+/* Absolutely composed illustrations need the full 1440px frame width. */
+@custom-variant scene (@media (width >= 90rem));
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+[id] {
+  scroll-margin-top: 96px;
+}
+
+@layer components {
+  /* Section eyebrow — Inter Semi Bold 13, letter-spacing 0.6% */
+  .t-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.006em;
+    line-height: 1.5;
+  }
+
+  /* Section heading — mobile Medium 30/116% -0.9%, desktop Medium 42/116% -1.4% */
+  .t-h2 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.009em;
+  }
+
+  /* Final-invitation heading — Medium 46/115% -1.5% on desktop */
+  .t-h2-xl {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.009em;
+  }
+
+  /* Hero headline — mobile Bold 40/108% -1.6% */
+  .t-h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.016em;
+  }
+
+  @media (width >= 64rem) {
+    .t-h2 {
+      font-size: 42px;
+      letter-spacing: -0.014em;
+    }
+
+    .t-h2-xl {
+      font-size: 46px;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+  }
+}
